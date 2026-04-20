@@ -1,39 +1,32 @@
 from src.tasks.dtos import TaskSchema
-from sqlalchemy.orm import session
+from sqlalchemy.orm import Session
 from src.tasks.models import TaskModel
 from fastapi import HTTPException
-from typing import List
 
 
-def create_task(body: List[TaskSchema], db: session):
+def create_task(body: TaskSchema, db: Session):
 
-    new_tasks = []
+    data = body.model_dump()
+    task = TaskModel(
+        title=data["title"],
+        description=data["description"],
+        is_completed=data.get("is_completed", False),
+    )
 
-    for item in body:
-        data = item.model_dump()
-        task = TaskModel(
-            title=data["title"],
-            description=data["description"],
-            is_completed=data.get("is_completed", False),
-        )
-
-        db.add(task)
-        new_tasks.append(task)
+    db.add(task)
     db.commit()
+    db.refresh(task)
 
-    for task in new_tasks:
-        db.refresh(task)
-
-    return {"status": "Tasks added successfully", "data": new_tasks}
+    return task
 
 
-def get_task(db: session):
+def get_task(db: Session):
     tasks = db.query(TaskModel).all()
 
-    return {"status": "Data fetched successfully", "data": tasks}
+    return tasks
 
 
-def get_one_task(task_id: int, db: session):
+def get_one_task(task_id: int, db: Session):
 
     one_task = db.query(TaskModel).get(task_id)
     if not one_task:
@@ -41,10 +34,10 @@ def get_one_task(task_id: int, db: session):
             status_code=404, detail=f"The data with id {task_id} not found"
         )
 
-    return {"status": "Task fetched successfully", "data": one_task}
+    return one_task
 
 
-def update_task(task_id: int, body: TaskSchema, db: session):
+def update_task(task_id: int, body: TaskSchema, db: Session):
     task = db.query(TaskModel).get(task_id)
 
     if not task:
@@ -60,10 +53,10 @@ def update_task(task_id: int, body: TaskSchema, db: session):
     db.commit()
     db.refresh(task)
 
-    return {"status": "Task updated successfully", "data": f"updated task data {task}"}
+    return  task
 
 
-def delete_task(task_id: int, db: session):
+def delete_task(task_id: int, db: Session):
 
     task = db.query(TaskModel).get(task_id)
 
@@ -71,8 +64,8 @@ def delete_task(task_id: int, db: session):
         raise HTTPException(
             status_code=404, detail=f"The data with id {task_id} not found"
         )
-    
+
     db.delete(task)
     db.commit()
 
-    return {"status": "Task deleted successfully", "data": f"Deleted task {task}"}
+    return None
