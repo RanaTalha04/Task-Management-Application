@@ -1,3 +1,5 @@
 fastapi[standard]
 pydantic-settings
 SQLAlchemy
+pyjwt
+pwdlib[argon2]
