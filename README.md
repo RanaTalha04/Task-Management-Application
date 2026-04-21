@@ -20,8 +20,8 @@ This application provides a RESTful API for managing tasks. Users can create, re
 - **Framework**: FastAPI
 - **Language**: Python 3.13+
 - **Database**: PostgreSQL 
-<!-- - **Authentication**: JWT tokens -->
 - **Dependencies**: Managed with pip
+<!-- - **Authentication**: JWT tokens -->
 
 ## Installation
 
