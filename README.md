@@ -52,9 +52,9 @@ This application provides a RESTful API for managing tasks. Users can create, re
 - API documentation available at `http://localhost:8000/docs`
 - You can use POSTMAN for API checking.
 
-<!-- ### Example API Endpoints
+ ### Example API Endpoints
 
-- `POST /auth/login` - Login and get JWT token -->
+<!-- - `POST /auth/login` - Login and get JWT token -->
 - `POST /user/register` - Register a new user
 - `GET /tasks/fetch` - Get all tasks
 - `GET /tasks/one_task/{task_id}` - Get one task
