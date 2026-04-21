@@ -9,11 +9,11 @@ This application provides a RESTful API for managing tasks. Users can create, re
 
 ## Features
 
-<!-- - User registration and authentication -->
+- User registration <!-- and authentication -->
 - Create, read, update, and delete tasks
+- API documentation with Swagger UI
 <!-- - Task categorization and priority assignment
-- Due date management
-- API documentation with Swagger UI -->
+- Due date management -->
 
 ## Tech Stack
 
@@ -54,12 +54,13 @@ This application provides a RESTful API for managing tasks. Users can create, re
 
 <!-- ### Example API Endpoints
 
-- `POST /auth/register` - Register a new user
-- `POST /auth/login` - Login and get JWT token
-- `GET /tasks` - Get all tasks (authenticated)
-- `POST /tasks` - Create a new task
-- `PUT /tasks/{task_id}` - Update a task
-- `DELETE /tasks/{task_id}` - Delete a task -->
+- `POST /auth/login` - Login and get JWT token -->
+- `POST /user/register` - Register a new user
+- `GET /tasks/fetch` - Get all tasks
+- `GET /tasks/one_task/{task_id}` - Get one task
+- `POST /tasks/create` - Create a new task
+- `PUT /tasks/update/{task_id}` - Update a task
+- `DELETE /tasks/delete/{task_id}` - Delete a task 
 
 ## Contributing
 
@@ -68,10 +69,6 @@ This application provides a RESTful API for managing tasks. Users can create, re
 3. Commit your changes
 4. Push to the branch
 5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License.
 
 ## Author 
 
