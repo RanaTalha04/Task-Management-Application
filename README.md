@@ -5,11 +5,12 @@ A backend-only task management application built with FastAPI and Python.
 ## Description
 
 This application provides a RESTful API for managing tasks. Users can create, read, update, and delete tasks. 
-<!-- It includes features like user authentication, task categorization, and priority levels. -->
+It includes features like user authentication. <!-- , task categorization, and priority levels. -->
 
 ## Features
 
-- User registration <!-- and authentication -->
+- User registration and authentication
+- User login using tokens
 - Create, read, update, and delete tasks
 - API documentation with Swagger UI
 <!-- - Task categorization and priority assignment
@@ -21,7 +22,7 @@ This application provides a RESTful API for managing tasks. Users can create, re
 - **Language**: Python 3.13+
 - **Database**: PostgreSQL 
 - **Dependencies**: Managed with pip
-<!-- - **Authentication**: JWT tokens -->
+- **Authentication**: JWT tokens
 
 ## Installation
 
@@ -54,7 +55,7 @@ This application provides a RESTful API for managing tasks. Users can create, re
 
  ### Example API Endpoints
 
-<!-- - `POST /auth/login` - Login and get JWT token -->
+- `POST /auth/login` - Login and get JWT token
 - `POST /user/register` - Register a new user
 - `GET /tasks/fetch` - Get all tasks
 - `GET /tasks/one_task/{task_id}` - Get one task
