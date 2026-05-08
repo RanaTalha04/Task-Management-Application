@@ -56,7 +56,7 @@ def user_login(body: LoginSchema, db:Session):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User does not exist or password is not correct")
         
     
-    exp_time = datetime.now() + timedelta(seconds=40)
+    exp_time = datetime.now() + timedelta(minutes=settings.EXP_TIME)
     
     token = jwt.encode({"_id": username.id, "exp": exp_time.timestamp()}, key=settings.SECRET_KEY, algorithm=settings.ALGORITHM)
     
@@ -75,12 +75,12 @@ def is_authenticated(request: Request, db: Session):
         data = jwt.decode(token, key=settings.SECRET_KEY, algorithms=settings.ALGORITHM)
         user_id = data.get("_id")
 
-        user_id = db.query(UserModel).filter(UserModel.id == user_id).first()
+        user = db.query(UserModel).filter(UserModel.id == user_id).first()
         
-        if not user_id:
+        if not user:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail = "No user found")
             
 
-        return user_id
+        return user
     except InvalidTokenError:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail = "Tokken not found")
