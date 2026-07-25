@@ -5,7 +5,7 @@ from src.utils.settings import settings
 
 Base = declarative_base()
 
-engine = create_engine(url=settings.DB_CONNECTION)
+engine = create_engine(url=settings.DB_CONNECTION, pool_pre_ping=True)
 
 localSession = sessionmaker(bind=engine)
 

@@ -2,4 +2,5 @@ fastapi[standard]
 pydantic-settings
 SQLAlchemy
 pyjwt
-pwdlib[argon2]
+pwdlib[argon2]  
+psycopg2-binary
