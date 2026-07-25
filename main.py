@@ -13,7 +13,7 @@ app = FastAPI(title="Task Management Application")
 
 origins = [
     "http://localhost:5173",              # Local React development
-    "https://your-frontend.vercel.app",   # Replace with your Vercel URL
+    "https://taskflow-pm.netlify.app/",   # Replace with your Vercel URL
 ]
 
 app.add_middleware(
